@@ -76,8 +76,9 @@ lazy val commonSettings = Seq(
 ) ++ scalaMacroDependencies ++ warnUnusedImport ++ selectiveOptimize ++ doctestConfig
 
 lazy val publishSettings = Seq(
-  publishTo := Some(Resolver.mavenLocal),
-  publishMavenStyle := true,
+  homepage := Some(url("http://denisrosset.github.io/metal")),
+  licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
+  bintrayRepository := "maven",
   publishArtifact in Test := false
 )
 
