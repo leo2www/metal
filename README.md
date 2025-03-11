@@ -86,3 +86,9 @@ scala> map.getOrElse(1, sys.error(""))
 res4: String = test
 
 ```
+
+## PublishLocal
+specificJavaVersion 8.0.442-amzn
+```bash
+sbt clean +publishLocal
+```
