@@ -54,7 +54,8 @@ lazy val buildSettings = Seq(
   name := "metal",
   organization := "org.scala-metal",
   scalaVersion := scala212Version,
-  crossScalaVersions := Seq(scala210Version, scala211Version, scala212Version)
+  // scala210Version 不受支持，缺失 org.typelevel#spire_2.10;0.16.0
+  crossScalaVersions := Seq(scala211Version, scala212Version)
 )
 
 lazy val commonSettings = Seq(
@@ -70,7 +71,11 @@ lazy val commonSettings = Seq(
     "-Ywarn-value-discard"
   )),
   resolvers ++= Seq(
-    Resolver.sonatypeRepo("snapshots")
+    Resolver.sonatypeRepo("snapshots"),
+    Resolver.sonatypeRepo("releases"),
+    // 本地构建器
+    // Resolver.mavenLocal,
+    // Resolver.file("local-ivy", file(Path.userHome.absolutePath + "/.ivy2/local"))(Resolver.ivyStylePatterns)
   ),
   libraryDependencies += "org.typelevel" %% "spire" % spireVersion
 ) ++ scalaMacroDependencies ++ warnUnusedImport ++ selectiveOptimize ++ doctestConfig
